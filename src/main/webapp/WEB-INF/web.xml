@@ -1,0 +1,56 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <context-param>
+		<param-name>log4j-config</param-name>
+		<param-value>WEB-INF/log4j.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbUser</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbPassword</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbURL</param-name>
+		<param-value>jdbc:mysql://localhost:3306/sector-seven</param-value>
+	</context-param>
+  
+  <servlet>  
+    <servlet-name>Jersey REST Service</servlet-name>  
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>  
+    <init-param>  
+        <param-name>jersey.config.server.provider.packages</param-name>  
+        <param-value>com.balajisiddi.rest</param-value>  
+    </init-param>  
+    <load-on-startup>1</load-on-startup>  
+  </servlet>  
+  <servlet-mapping>  
+    <servlet-name>Jersey REST Service</servlet-name>  
+    <url-pattern>/rest/*</url-pattern>  
+  </servlet-mapping>  
+	
+	<listener>
+   		<listener-class>
+    		com.balajisiddi.util.AppContextListener
+    	</listener-class>
+	</listener>
+  
+  
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/AppErrorHandler</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/AppErrorHandler</location>
+	</error-page>
+</web-app>
